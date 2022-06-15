@@ -1,0 +1,21 @@
+body {
+    font-family: "Roboto Thin", sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#canvas {
+    border: 1px darkgray solid;
+    padding: 0;
+    margin: auto;
+    display: block;
+    cursor: url("scope.png") 50 40, auto ;
+    background-color: grey;
+}
+
+#levels {
+    padding: 10px;
+    text-align: center;
+}
