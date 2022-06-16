@@ -12,10 +12,15 @@ h1 {
     margin: auto;
     display: block;
     cursor: url("scope.png") 50 40, auto ;
-    background-color: grey;
+    background-color: #b2b2b2;
 }
 
 #levels {
     padding: 10px;
+    text-align: center;
+}
+
+#stats {
+    padding: 4px;
     text-align: center;
 }

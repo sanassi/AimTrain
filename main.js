@@ -20,8 +20,10 @@ const nbCircles = 10;
 const maxSpeed = 10;
 const minSpeed = -10;
 
-let nbClicks = 0;
+const accuracyLabel = document.getElementById('accuracy');
+accuracyLabel.textContent = ' 0 ';
 
+let nbClicks = 0;
 
 function drawCircle(circle) {
     ctx.beginPath();
@@ -70,9 +72,7 @@ function clickMouseEvent(event) {
     let rect = canvas.getBoundingClientRect();
     let posX = event.x - rect.x;
     let posY = event.y - rect.y;
-    //console.log(`x : ${posX} y : ${posY}`);
     nbClicks += 1;
-    //console.log(nbClicks);
 
     for (let circle of circles)
     {
@@ -93,9 +93,12 @@ function distance(x1, y1, x2, y2) {
 
 canvas.addEventListener("click", clickMouseEvent, false);
 
-function animate(circles)
-{
+function animate(circles) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawText(getNbCirclesOn(circles), canvas.width / 2, canvas.height / 2);
+    if (nbClicks !== 0) {
+        accuracyLabel.textContent = Math.round(((nbCircles - getNbCirclesOn(circles)) / nbClicks) * 100) + ' %';
+    }
 
     for (let circle of circles)
     {
@@ -131,11 +134,9 @@ function animate(circles)
             if (x + rad + 1>= canvas.width) {
                 stepX = -stepX;
             }
-
             if (x - rad + 1<= 0) {
                 stepX = -stepX;
             }
-
             if (y + rad + 1>= canvas.height) {
                 stepY = -stepY;
             }
@@ -161,19 +162,23 @@ function getNbCirclesOn(circles) {
     return nbOn;
 }
 
-function draw() {
-    ctx.font = 'Arial 100px serif';
-    ctx.strokeText('Hello world', canvas.height/2, canvas.width/2);
+function drawText(text, x, y) {
+    let width = 100;
+    ctx.font = width + 'px Arial';
+    ctx.fillStyle = `rgb(
+        ${92},
+        ${92},
+        ${92})`;
+    ctx.textAlign = 'center';
+    ctx.fillText(text, x, y);
 }
 
 window.requestAnimationFrame(render);
 
-function render()
-{
+function render() {
     if (getNbCirclesOn(circles) !== 0)
     {
         animate(circles);
-        draw();
         window.requestAnimationFrame(render);
     }
 }
