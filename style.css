@@ -11,7 +11,7 @@ h1 {
     padding: 0;
     margin: auto;
     display: block;
-    cursor: url("scope.png") 50 40, auto ;
+    cursor: url("images/scope.png") 50 40, auto ;
     background-color: #b2b2b2;
 }
 
