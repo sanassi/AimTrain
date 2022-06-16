@@ -44,13 +44,11 @@ function getRandomInt(min, max) {
 
 function generateCircles(nbCircles) {
     let circles = [];
-    for (let i = 0; i < nbCircles; i++)
-    {
+    for (let i = 0; i < nbCircles; i++) {
         let rad = getRandomInt(40, 75);
         let stepX = getRandomInt(minSpeed, maxSpeed), stepY = getRandomInt(minSpeed, maxSpeed);
 
-        while (stepX === 0 || stepY === 0)
-        {
+        while (stepX === 0 || stepY === 0) {
             stepX = getRandomInt(minSpeed, maxSpeed);
             stepY = getRandomInt(minSpeed, maxSpeed);
         }
@@ -74,10 +72,8 @@ function clickMouseEvent(event) {
     let posY = event.y - rect.y;
     nbClicks += 1;
 
-    for (let circle of circles)
-    {
-        if ((posX - circle.x) * (posX - circle.x) + (posY - circle.y) * (posY - circle.y) <= (circle.rad * circle.rad))
-        {
+    for (let circle of circles) {
+        if ((posX - circle.x) * (posX - circle.x) + (posY - circle.y) * (posY - circle.y) <= (circle.rad * circle.rad)) {
             circle.isOn = false;
         }
     }
@@ -100,10 +96,8 @@ function animate(circles) {
         accuracyLabel.textContent = Math.round(((nbCircles - getNbCirclesOn(circles)) / nbClicks) * 100) + ' %';
     }
 
-    for (let circle of circles)
-    {
-        if (circle.isOn)
-        {
+    for (let circle of circles) {
+        if (circle.isOn) {
             let x = circle.x;
             let y = circle.y;
             let rad = circle.rad;
@@ -112,12 +106,10 @@ function animate(circles) {
             drawCircle(circle);
 
             /*Ball to ball collision*/
-            for (let otherCircle of circles)
-            {
+            for (let otherCircle of circles) {
                 let dist = distance(circle.x, circle.y, otherCircle.x, otherCircle.y);
                 if (dist !== 0 &&
-                    dist <= circle.rad + otherCircle.rad)
-                {
+                    dist <= circle.rad + otherCircle.rad) {
                     let nx = (otherCircle.x - circle.x) / dist;
                     let ny = (otherCircle.y - circle.y) / dist;
 
