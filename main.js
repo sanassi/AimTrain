@@ -1,3 +1,4 @@
+/*class to store circle info*/
 class Circle {
     constructor(x, y, rad, stepX, stepY, color) {
         this.isOn = true;
@@ -10,12 +11,14 @@ class Circle {
     }
 }
 
+/*setup canvas and context*/
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 canvas.height = 700;
 canvas.width = 800;
 
+/*define game constants*/
 const nbCircles = 10;
 const maxSpeed = 10;
 const minSpeed = -10;
