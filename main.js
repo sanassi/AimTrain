@@ -21,7 +21,7 @@ canvas.height = 700;
 canvas.width = 800;
 
 /*define game constants*/
-const nbCircles = 10;
+let nbCircles = 10;
 let maxSpeed = 5;
 let minSpeed = -5;
 
@@ -42,18 +42,21 @@ let nbClicks = 0;
 hardLevelBut.addEventListener('click', () => {
     maxSpeed = 15;
     minSpeed = -15;
+    nbCircles = 20;
     level = 'hard';
 });
 
 mediumLevelBut.addEventListener('click', () => {
     maxSpeed = 10;
     minSpeed = -10;
+    nbCircles = 12;
     level = 'medium';
 });
 
 easyLevelBut.addEventListener('click', () => {
     maxSpeed = 5;
     minSpeed = -5;
+    nbCircles = 7;
     level = 'easy';
 });
 
@@ -211,6 +214,9 @@ function Play() {
         playButton.style.visibility = 'hidden';
         levelChooser.style.visibility = 'hidden';
         canvas.style.visibility = 'visible';
+
+        circles = generateCircles(nbCircles);
+
         window.requestAnimationFrame(Render);
     }
     else {
