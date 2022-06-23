@@ -13,6 +13,8 @@ class Circle {
 
 /*setup canvas and context*/
 const canvas = document.getElementById('canvas');
+canvas.style.visibility = 'hidden';
+const levelChooser = document.getElementById('levels');
 const ctx = canvas.getContext('2d');
 
 canvas.height = 700;
@@ -20,13 +22,40 @@ canvas.width = 800;
 
 /*define game constants*/
 const nbCircles = 10;
-const maxSpeed = 10;
-const minSpeed = -10;
+let maxSpeed = 5;
+let minSpeed = -5;
 
 const accuracyLabel = document.getElementById('accuracy');
+
+const hardLevelBut = document.getElementById('hardLevel');
+const mediumLevelBut = document.getElementById('mediumLevel');
+const easyLevelBut = document.getElementById('easyLevel');
+
+const playButton = document.getElementById('play');
+
 accuracyLabel.textContent = ' 0 ';
 
+let level = 'none';
+
 let nbClicks = 0;
+
+hardLevelBut.addEventListener('click', () => {
+    maxSpeed = 15;
+    minSpeed = -15;
+    level = 'hard';
+});
+
+mediumLevelBut.addEventListener('click', () => {
+    maxSpeed = 10;
+    minSpeed = -10;
+    level = 'medium';
+});
+
+easyLevelBut.addEventListener('click', () => {
+    maxSpeed = 5;
+    minSpeed = -5;
+    level = 'easy';
+});
 
 function drawCircle(circle) {
     ctx.beginPath();
@@ -168,12 +197,25 @@ function drawText(text, x, y) {
     ctx.fillText(text, x, y);
 }
 
-window.requestAnimationFrame(render);
-
-function render() {
+function Render() {
     if (getNbCirclesOn(circles) !== 0)
     {
         animate(circles);
-        window.requestAnimationFrame(render);
+        window.requestAnimationFrame(Render);
     }
 }
+
+function Play() {
+    canvas.style.visibility = 'hidden';
+    if (level !== 'none') {
+        playButton.style.visibility = 'hidden';
+        levelChooser.style.visibility = 'hidden';
+        canvas.style.visibility = 'visible';
+        window.requestAnimationFrame(Render);
+    }
+    else {
+        window.alert('Select Level First !');
+    }
+}
+
+playButton.addEventListener('click', Play);

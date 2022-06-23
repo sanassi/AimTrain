@@ -20,6 +20,15 @@ h1 {
     text-align: center;
 }
 
+#play {
+    text-align: center;
+}
+
+#gameLauncher {
+    text-align: center;
+    margin: 10px;
+}
+
 #stats {
     padding: 4px;
     text-align: center;
@@ -31,5 +40,5 @@ footer {
 }
 
 #levels {
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
